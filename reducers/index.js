@@ -25,9 +25,38 @@ starterData = {
   }
 }
 
-function decks ( state = { decks: starterData }, action) { 
+function decks ( state = starterData, action) { 
   switch (action.type) {
     case types.ADD_DECK:
+      return { 
+        ...state,
+        [action.deckTitle]: {
+          title: action.deckTitle,
+          questions: []
+        }
+      }
+    case types.LOAD_DECKS:
+      return state
+    case types.ADD_CARD:
+      const { deckTitle, card } = action
+      const mergedDeck = { ...state[deckTitle] }
+      mergedDeck.questions = [...state[deckTitle].questions]
+      mergedDeck.questions.push(card)
+      return {
+        ...state,
+        [deckTitle]: mergedDeck
+      }
+    default:
+      return state
+  }
+}
+
+export default decks
+
+
+
+/*
+
       return { decks: { 
         ...state.decks,
         [action.deckTitle]: {
@@ -35,15 +64,6 @@ function decks ( state = { decks: starterData }, action) {
           questions: []
         }}
       }
-    case types.LOAD_DECKS:
-      return state
-    case types.ADD_CARD:
-      const {question, answer} = action.card
-      state.decks[action.deckTitle].questions.push({ question, answer })
-      return state
-    default:
-      return state
-  }
-}
 
-export default decks
+
+*/
