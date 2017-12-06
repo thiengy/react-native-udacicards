@@ -59,7 +59,7 @@ function mapStateToProps ( state ) {
     return Object.values(data).map( deck => ({ ...deck, key: deck.title }))
   }
   return {
-    decks: getDecks(state.decks)
+    decks: getDecks(state)
   }
 }
 

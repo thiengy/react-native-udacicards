@@ -16,13 +16,11 @@ class DeckDetail extends Component {
             title={'Quiz'}
             onPress={ () => goTo( 'Quiz' , deck.title )}
           >
-            <Text>Quiz</Text>
           </Button>
           <Button
             title={'Add Card'}
             onPress={ () => goTo( 'AddCard' , deck.title )}
           >
-            <Text>Add Card</Text>
           </Button>
         </View>
       </View>
@@ -50,8 +48,8 @@ const styles = StyleSheet.create({
 function mapStateToProps(state, ownProps) {
   const { deckTitle } = ownProps.navigation.state.params
   return {
-    decks: state.decks,
-    deck: state.decks[deckTitle],
+    decks: state,
+    deck: state[deckTitle],
     }
 }
 

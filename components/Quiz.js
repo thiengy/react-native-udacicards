@@ -125,7 +125,7 @@ function mapStateToProps(state, ownProps) {
   const { deckTitle } = ownProps.navigation.state.params
   
   return {
-    deck: state.decks[deckTitle],
+    deck: state[deckTitle],
   }
 }
 
