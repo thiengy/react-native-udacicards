@@ -17,6 +17,16 @@ class Quiz extends Component {
       .then(setLocalNotification)
   }
 
+  restartQuiz = () => {
+    this.setState({
+      answersRight: 0,
+      currentCard: 0,
+      nextCard: 0,
+      renderAnswer: false,
+      completed: false
+      })
+  }
+
   markRight = () => {
     const { questions } = this.props.deck
     const nextCard = this.state.currentCard + 1
@@ -60,6 +70,7 @@ class Quiz extends Component {
           <Text style={styles.titleText}>Score: {(answersRight/questions.length) * 100}%</Text>
           <Text style={styles.bodyText}>You answered {answersRight} out {questions.length} question(s) correctly.</Text>
           <Text style={styles.bodyText}>Thanks for Playing!</Text>
+          <Button title={'Restart Quiz'} onPress={this.restartQuiz}/>
           <Button title={'Exit'} onPress={this.goBack}/>
         </View>
       )
